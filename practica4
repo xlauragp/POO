@@ -1,0 +1,222 @@
+// Clase Persona para el contexto de Familia/Casa
+class PersonaFamilia {
+    private String nombre;
+    private int edad;
+    private String relacion;
+    private String direccion;
+    private String estadoCivil;
+
+    // Constructor
+    public PersonaFamilia(String nombre, int edad, String relacion, String direccion, String estadoCivil) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.relacion = relacion;
+        this.direccion = direccion;
+        this.estadoCivil = estadoCivil;
+    }
+
+    // Métodos get y set
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getRelacion() {
+        return relacion;
+    }
+
+    public void setRelacion(String relacion) {
+        this.relacion = relacion;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    // Método para mostrar los datos
+    public void mostrarDatos() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Relación: " + relacion);
+        System.out.println("Dirección: " + direccion);
+        System.out.println("Estado Civil: " + estadoCivil);
+    }
+}
+
+// Clase Persona para el contexto de Escuela (caso alumno)
+class PersonaEscuela {
+    private String nombre;
+    private int edad;
+    private int grado;
+    private String institucion;
+    private String materiaFavorita;
+
+    // Constructor
+    public PersonaEscuela(String nombre, int edad, int grado, String institucion, String materiaFavorita) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.grado = grado;
+        this.institucion = institucion;
+        this.materiaFavorita = materiaFavorita;
+    }
+
+    // Métodos get y set
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public int getGrado() {
+        return grado;
+    }
+
+    public void setGrado(int grado) {
+        this.grado = grado;
+    }
+
+    public String getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(String institucion) {
+        this.institucion = institucion;
+    }
+
+    public String getMateriaFavorita() {
+        return materiaFavorita;
+    }
+
+    public void setMateriaFavorita(String materiaFavorita) {
+        this.materiaFavorita = materiaFavorita;
+    }
+
+    // Método para mostrar los datos
+    public void mostrarDatos() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Grado: " + grado);
+        System.out.println("Institución: " + institucion);
+        System.out.println("Materia Favorita: " + materiaFavorita);
+    }
+}
+
+// Clase Persona para el contexto de Empleo
+class PersonaEmpleo {
+    private String nombre;
+    private int edad;
+    private String puesto;
+    private String empresa;
+    private double salario;
+
+    // Constructor
+    public PersonaEmpleo(String nombre, int edad, String puesto, String empresa, double salario) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.puesto = puesto;
+        this.empresa = empresa;
+        this.salario = salario;
+    }
+
+    // Métodos get y set
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    // Método para mostrar los datos
+    public void mostrarDatos() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Puesto: " + puesto);
+        System.out.println("Empresa: " + empresa);
+        System.out.println("Salario: " + salario);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Crear un objeto para cada tipo de clase Persona
+        PersonaFamilia personaFamilia = new PersonaFamilia("Juan", 35, "Padre", "123 Calle Principal", "Casado");
+        PersonaEscuela personaEscuela = new PersonaEscuela("María", 12, 6, "Escuela Primaria XYZ", "Matemáticas");
+        PersonaEmpleo personaEmpleo = new PersonaEmpleo("Carlos", 28, "Desarrollador de Software", "ABC Tech", 60000.0);
+
+        // Mostrar los datos de cada persona
+        System.out.println("Datos de Persona en el contexto de Familia/Casa:");
+        personaFamilia.mostrarDatos();
+
+        System.out.println("\nDatos de Persona en el contexto de Escuela (caso alumno):");
+        personaEscuela.mostrarDatos();
+
+        System.out.println("\nDatos de Persona en el contexto de Empleo:");
+        personaEmpleo.mostrarDatos();
+    }
+}
