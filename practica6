@@ -1,0 +1,258 @@
+import java.util.Scanner;
+
+class Persona {
+    String nombre;
+    String correo;
+    String telefono;
+
+    public void setNombre(String nom) {
+        nombre = nom;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setCorreo(String cor) {
+        correo = cor;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setTelefono(String tel) {
+        telefono = tel;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+}
+
+class Alumno extends Persona {
+    String matricula;
+    String promedio;
+
+    public void setMatricula(String mat) {
+        matricula = mat;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setPromedio(String prom) {
+        promedio = prom;
+    }
+
+    public String getPromedio() {
+        return promedio;
+    }
+}
+
+class Profesor extends Persona {
+    int numEmpleado;
+    float Sueldo;
+
+    public void setNumEmpleado(int numemp) {
+        numEmpleado = numemp;
+    }
+
+    public int getNumEmpleado() {
+        return numEmpleado;
+    }
+
+    public void setSueldo(float sueld) {
+        Sueldo = sueld;
+    }
+
+    public float getSueldo() {
+        return Sueldo;
+    }
+}
+
+class Grupo {
+    String Id_grupo;
+    Profesor profe;
+    Alumno alus[];
+
+    public void setIdGrupo(String id) {
+        Id_grupo = id;
+    }
+
+    public String getIdGrupo() {
+        return Id_grupo;
+    }
+
+
+    public void setProfesor(Profesor profesor) {
+        profe = profesor;
+    }
+
+    public Profesor getProfesor() {
+        return profe;
+    }
+
+    public void setAlumnos(Alumno[] alumnos) {
+        alus = alumnos;
+    }
+
+    public Alumno[] getAlumnos() {
+        return alus;
+    }
+}
+
+class Materia {
+    String clave;
+    String nombre;
+    int creditos;
+    String etapa;
+
+    public void setClave(String claveMateria) {
+        clave = claveMateria;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setNombre(String nombreMateria) {
+        nombre = nombreMateria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setCreditos(int creditosMateria) {
+        creditos = creditosMateria;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setEtapa(String etapaMateria) {
+        etapa = etapaMateria;
+    }
+
+    public String getEtapa() {
+        return etapa;
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese los datos del profesor:\n");
+        Profesor prof1 = new Profesor();
+
+        System.out.print("Nombre: ");
+        prof1.setNombre(scanner.nextLine());
+
+        System.out.print("Correo: ");
+        prof1.setCorreo(scanner.nextLine());
+
+        System.out.print("Teléfono: ");
+        prof1.setTelefono(scanner.nextLine());
+
+        System.out.print("Número de Empleado: ");
+        prof1.setNumEmpleado(scanner.nextInt());
+
+        System.out.print("Sueldo: ");
+        prof1.setSueldo(scanner.nextFloat());
+
+        System.out.print("Ingrese la cantidad de alumnos: ");
+        int cantidadAlumnos = scanner.nextInt();
+
+        Alumno[] alumnos = new Alumno[cantidadAlumnos];
+
+        for (int i = 0; i < cantidadAlumnos; i++) {
+            System.out.print("\nIngrese los datos del alumno " + (i + 1) + ":\n");
+            alumnos[i] = new Alumno();
+            scanner.nextLine();  // Consume the newline character
+
+            System.out.print("Nombre: ");
+            alumnos[i].setNombre(scanner.nextLine());
+
+            System.out.print("Correo: ");
+            alumnos[i].setCorreo(scanner.nextLine());
+
+            System.out.print("Teléfono: ");
+            alumnos[i].setTelefono(scanner.nextLine());
+
+            System.out.print("Matrícula: ");
+            alumnos[i].setMatricula(scanner.nextLine());
+
+            System.out.print("Promedio: ");
+            alumnos[i].setPromedio(scanner.nextLine());
+        }
+
+        System.out.print("Ingrese los datos del grupo:\n");
+        Grupo grupo = new Grupo();
+
+        System.out.print("ID de Grupo: ");
+        grupo.setIdGrupo(scanner.next());
+
+        scanner.nextLine(); // Consume the newline character
+
+        grupo.setProfesor(prof1);
+        grupo.setAlumnos(alumnos);
+
+        System.out.print("Ingrese los datos de la materia:\n");
+        Materia materia = new Materia();
+
+        System.out.print("Clave de Materia: ");
+        materia.setClave(scanner.next());
+
+        scanner.nextLine(); // Consume the newline character
+
+        System.out.print("Nombre de Materia: ");
+        materia.setNombre(scanner.nextLine());
+
+        System.out.print("Créditos: ");
+        materia.setCreditos(scanner.nextInt());
+
+        scanner.nextLine(); // Consume the newline character
+
+        System.out.print("Etapa: ");
+        materia.setEtapa(scanner.nextLine());
+
+        scanner.close();
+
+        // Imprimir información de profesor
+        System.out.println("\nDatos del profesor:");
+        System.out.println("Nombre: " + prof1.getNombre());
+        System.out.println("Correo: " + prof1.getCorreo());
+        System.out.println("Teléfono: " + prof1.getTelefono());
+        System.out.println("Número de Empleado: " + prof1.getNumEmpleado());
+        System.out.println("Sueldo: " + prof1.getSueldo());
+
+        // Imprimir información de alumnos
+        System.out.println("\nDatos de los alumnos:");
+        for (int i = 0; i < cantidadAlumnos; i++) {
+            System.out.println("Alumno " + (i + 1) + ":");
+            System.out.println("Nombre: " + alumnos[i].getNombre());
+            System.out.println("Correo: " + alumnos[i].getCorreo());
+            System.out.println("Teléfono: " + alumnos[i].getTelefono());
+            System.out.println("Matrícula: " + alumnos[i].getMatricula());
+            System.out.println("Promedio: " + alumnos[i].getPromedio());
+            System.out.println();
+        }
+
+        // Imprimir información del grupo
+        System.out.println("\nDatos del grupo:");
+        System.out.println("ID de Grupo: " + grupo.getIdGrupo());
+        System.out.println("Profesor del Grupo: " + grupo.getProfesor().getNombre());
+        System.out.println("Número de Alumnos en el Grupo: " + grupo.getAlumnos().length);
+
+        // Imprimir información de la materia
+        System.out.println("\nDatos de la materia:");
+        System.out.println("Clave de Materia: " + materia.getClave());
+        System.out.println("Nombre de Materia: " + materia.getNombre());
+        System.out.println("Créditos: " + materia.getCreditos());
+        System.out.println("Etapa: " + materia.getEtapa());
+    }
+}
