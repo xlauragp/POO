@@ -1,0 +1,214 @@
+// Clase Motor
+class Motor {
+    private String tipo;
+    private int potencia;
+
+    // Constructor con parámetros
+    public Motor(String tipo, int potencia) {
+        this.tipo = tipo;
+        this.potencia = potencia;
+    }
+
+    // Getter del tipo
+    public String getTipo() {
+        return tipo;
+    }
+
+    // Setter del tipo
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    // Getter de la potencia
+    public int getPotencia() {
+        return potencia;
+    }
+
+    // Setter de la potencia
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
+    }
+}
+
+// Clase Transmisión
+class Transmision {
+    private String tipo;
+    private int marchas;
+
+    // Constructor con parámetros
+    public Transmision(String tipo, int marchas) {
+        this.tipo = tipo;
+        this.marchas = marchas;
+    }
+
+    // Getter del tipo
+    public String getTipo() {
+        return tipo;
+    }
+
+    // Setter del tipo
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    // Getter de las marchas
+    public int getMarchas() {
+        return marchas;
+    }
+
+    // Setter de las marchas
+    public void setMarchas(int marchas) {
+        this.marchas = marchas;
+    }
+}
+
+// Clase Neumático
+class Neumatico {
+    private String marca;
+    private int diametro;
+
+    // Constructor con parámetros
+    public Neumatico(String marca, int diametro) {
+        this.marca = marca;
+        this.diametro = diametro;
+    }
+
+    // Getter de la marca
+    public String getMarca() {
+        return marca;
+    }
+
+    // Setter de la marca
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    // Getter del diámetro
+    public int getDiametro() {
+        return diametro;
+    }
+
+    // Setter del diámetro
+    public void setDiametro(int diametro) {
+        this.diametro = diametro;
+    }
+}
+
+// Clase Vehículo
+class Vehiculo {
+    private String marca;
+    private String modelo;
+    private int año;
+    private Motor motor;
+    private Transmision transmision;
+    private Neumatico[] neumaticos;
+
+     // Constructor con parámetros
+     public Vehiculo(String marca, String modelo, int año, Motor motor, Transmision transmision, Neumatico[] neumaticos) {
+         this.marca = marca;
+         this.modelo = modelo;
+         this.año = año;
+         this.motor = motor;
+         this.transmision = transmision;
+         this.neumaticos = neumaticos;
+     }
+
+     // Getter de la marca
+     public String getMarca() {
+         return marca;
+     }
+
+     // Setter de la marca
+     public void setMarca(String marca) {
+         this.marca = marca;
+     }
+
+     // Getter del modelo
+     public String getModelo() {
+         return modelo;
+     }
+
+     // Setter del modelo
+     public void setModelo(String modelo) {
+         this.modelo = modelo;
+     }
+
+     // Getter del año
+     public int getAño() {
+         return año;
+     }
+
+     // Setter del año
+     public void setAño(int año) {
+         this.año = año;
+     }
+
+     // Getter del motor
+     public Motor getMotor() {
+         return motor;
+     }
+
+     // Setter del motor
+     public void setMotor(Motor motor) {
+         this.motor = motor;
+     }
+
+     // Getter de la transmisión
+     public Transmision getTransmision() {
+         return transmision;
+     }
+
+     // Setter de la transmisión
+     public void setTransmision(Transmision transmision) {
+         this.transmision = transmision;
+     }
+
+      // Getter de los neumáticos
+      public Neumatico[] getNeumaticos() {
+          return neumaticos;
+      }
+ 
+      // Setter de los neumáticos
+      public void setNeumaticos(Neumatico[] neumaticos) {
+          this.neumaticos = neumaticos;
+      }
+ 
+      // Método para mostrar los atributos del vehículo
+      public void mostrarAtributos() {
+          System.out.println("Marca: " + marca);
+          System.out.println("Modelo: " + modelo);
+          System.out.println("Año: " + año);
+          System.out.println("Motor:");
+          System.out.println("  Tipo: " + motor.getTipo());
+          System.out.println("  Potencia: " + motor.getPotencia());
+          System.out.println("Transmisión:");
+          System.out.println("  Tipo: " + transmision.getTipo());
+          System.out.println("  Marchas: " + transmision.getMarchas());
+          System.out.println("Neumáticos:");
+          for (int i = 0; i < neumaticos.length; i++) {
+              System.out.println("  Neumático " + (i + 1) + ":");
+              System.out.println("    Marca: " + neumaticos[i].getMarca());
+              System.out.println("    Diámetro: " + neumaticos[i].getDiametro());
+          }
+      }
+ }
+
+ public class Main {
+     public static void main(String[] args) {
+         // Crear objetos Motor, Transmisión y Neumáticos
+         Motor motorCoche = new Motor("Gasolina", 150);
+         Transmision transmisionCoche = new Transmision("Automática", 6);
+         Neumatico[] neumaticosCoche = {
+             new Neumatico("Michelin", 18),
+             new Neumatico("Michelin", 18),
+             new Neumatico("Michelin", 18),
+             new Neumatico("Michelin", 18)
+         };
+ 
+         // Crear un objeto de la clase Vehículo (coche)
+         Vehiculo coche = new Vehiculo("Toyota", "Camry", 2023, motorCoche, transmisionCoche, neumaticosCoche);
+ 
+         // Mostrar los atributos del coche
+         coche.mostrarAtributos();
+     }
+ }
