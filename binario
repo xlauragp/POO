@@ -1,0 +1,190 @@
+/* Carlos Alberto Vela Marquez
+   Laura Fernanda Gomez Perdomo */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Estructura para representar un nodo del árbol binario
+typedef struct Nodo {
+    int dato;
+    struct Nodo* izquierdo;
+    struct Nodo* derecho;
+} Nodo;
+
+// Función para crear un nuevo nodo
+Nodo* crearNodo(int dato) {
+    Nodo* nuevoNodo = (Nodo*)malloc(sizeof(Nodo));
+    nuevoNodo->dato = dato;
+    nuevoNodo->izquierdo = NULL;
+    nuevoNodo->derecho = NULL;
+    return nuevoNodo;
+}
+
+// Función para insertar un nodo en el árbol
+Nodo* insertar(Nodo* raiz, int dato) {
+    if (raiz == NULL) {
+        return crearNodo(dato);
+    }
+
+    Nodo* padre = NULL; // Variable para rastrear al padre
+    Nodo* actual = raiz;
+
+    while (actual != NULL) {
+        padre = actual;
+
+        if (dato < actual->dato) {
+            actual = actual->izquierdo;
+        } else if (dato > actual->dato) {
+            actual = actual->derecho;
+        } else {
+            // Si el dato ya existe, no hacer nada
+            return raiz;
+        }
+    }
+
+    Nodo* nuevoNodo = crearNodo(dato);
+
+    if (dato < padre->dato) {
+        padre->izquierdo = nuevoNodo;
+    } else {
+        padre->derecho = nuevoNodo;
+    }
+
+    return raiz;
+}
+
+// Función para encontrar el nodo con el valor mínimo en un árbol
+Nodo* encontrarMinimo(Nodo* raiz) {
+    Nodo* actual = raiz;
+    while (actual->izquierdo != NULL) {
+        actual = actual->izquierdo;
+    }
+    return actual;
+}
+
+// Función para eliminar un nodo del árbol
+Nodo* eliminar(Nodo* raiz, int dato) {
+    Nodo* padre = NULL; // Variable para rastrear al padre
+    Nodo* actual = raiz;
+
+    while (actual != NULL && actual->dato != dato) {
+        padre = actual;
+
+        if (dato < actual->dato) {
+            actual = actual->izquierdo;
+        } else {
+            actual = actual->derecho;
+        }
+    }
+
+    if (actual == NULL) {
+        // El dato no existe en el árbol
+        return raiz;
+    }
+
+    // Nodo hoja (sin hijos)
+    if (actual->izquierdo == NULL && actual->derecho == NULL) {
+        if (actual != raiz) {
+            if (padre->izquierdo == actual) {
+                free(padre->izquierdo);
+                padre->izquierdo = NULL;
+            } else {
+                free(padre->derecho);
+                padre->derecho = NULL;
+            }
+        } else {
+            free(raiz);
+            raiz = NULL;
+        }
+    }
+    // Nodo con un hijo
+    else if (actual->izquierdo == NULL) {
+        if (actual != raiz) {
+            if (padre->izquierdo == actual) {
+                padre->izquierdo = actual->derecho;
+            } else {
+                padre->derecho = actual->derecho;
+            }
+        } else {
+            raiz = actual->derecho;
+        }
+        free(actual);
+    } else if (actual->derecho == NULL) {
+        if (actual != raiz) {
+            if (padre->izquierdo == actual) {
+                padre->izquierdo = actual->izquierdo;
+            } else {
+                padre->derecho = actual->izquierdo;
+            }
+        } else {
+            raiz = actual->izquierdo;
+        }
+        free(actual);
+    }
+    // Nodo con dos hijos: obtener el mínimo en el subárbol derecho
+    else {
+        Nodo* sucesor = encontrarMinimo(actual->derecho);
+        actual->dato = sucesor->dato;
+        actual->derecho = eliminar(actual->derecho, sucesor->dato);
+    }
+
+    return raiz;
+}
+
+// Función para buscar un nodo en el árbol
+Nodo* buscar(Nodo* raiz, int dato) {
+    Nodo* actual = raiz;
+
+    while (actual != NULL && actual->dato != dato) {
+        if (dato < actual->dato) {
+            actual = actual->izquierdo;
+        } else {
+            actual = actual->derecho;
+        }
+    }
+
+    return actual;
+}
+
+int main() {
+    Nodo* raiz = NULL;
+    int opcion, dato;
+
+    do {
+        printf("\nOpciones:\n");
+        printf("1. Insertar nodo\n");
+        printf("2. Eliminar nodo\n");
+        printf("3. Salir\n");
+        printf("Ingrese su opción: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                printf("Ingrese el dato a insertar: ");
+                scanf("%d", &dato);
+                if (buscar(raiz, dato) == NULL) {
+                    raiz = insertar(raiz, dato);
+                } else {
+                    printf("El dato ya existe en el árbol.\n");
+                }
+                break;
+            case 2:
+                printf("Ingrese el dato a eliminar: ");
+                scanf("%d", &dato);
+                if (buscar(raiz, dato) != NULL) {
+                    raiz = eliminar(raiz, dato);
+                } else {
+                    printf("El dato no existe en el árbol.\n");
+                }
+                break;
+            case 3:
+                // Salir del programa
+                break;
+            default:
+                printf("Opción no válida. Intente de nuevo.\n");
+        }
+    } while (opcion != 3);
+
+    return 0;
+}
+
