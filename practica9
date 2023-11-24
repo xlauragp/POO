@@ -1,0 +1,168 @@
+// Abstract class
+abstract class Figura {
+    protected double x;
+    protected double y;
+
+    public Figura(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public abstract double calcularArea();
+    public abstract double calcularPerimetro();
+}
+
+// Interface Dibujable
+interface Dibujable {
+    public void dibujar();
+    public void otroMetodoDibujable();
+}
+
+// Interface Rotable
+interface Rotable {
+    public void rotar(int grados);
+    public void otroMetodoRotable();
+}
+
+// Resto de tu código con implementaciones de figuras...
+
+// Implementaciones de las interfaces y el método calcularPerimetro en cada figura
+
+class Circulo extends Figura implements Dibujable, Rotable {
+    private double radio;
+
+    public Circulo(double x, double y, double radio) {
+        super(x, y);
+        this.radio = radio;
+    }
+
+    public double calcularArea() {
+        return Math.PI * radio * radio;
+    }
+
+    public double calcularPerimetro() {
+        return 2 * Math.PI * radio;
+    }
+
+    public void dibujar() {
+        System.out.println("Imaginame DIBUJADO: soy UN CIRCULO");
+    }
+
+    public void rotar(int grados) {
+        System.out.println("Imaginame ROTADO " + grados + " GRADOS: soy UN CIRCULO");
+    }
+
+    public void otroMetodoDibujable() {
+        // Implementación del método adicional en la interfaz Dibujable para Circulo
+        System.out.println("Otro método en Circulo para Dibujable");
+    }
+
+    public void otroMetodoRotable() {
+        // Implementación del método adicional en la interfaz Rotable para Circulo
+        System.out.println("Otro método en Circulo para Rotable");
+    }
+}
+
+class Cuadrado extends Figura implements Dibujable, Rotable {
+    private double lado;
+
+    public Cuadrado(double x, double y, double lado) {
+        super(x, y);
+        this.lado = lado;
+    }
+
+    public double calcularArea() {
+        return lado * lado;
+    }
+
+    public double calcularPerimetro() {
+        return 4 * lado;
+    }
+
+    public void dibujar() {
+        System.out.println("Imaginame DIBUJADO: soy UN CUADRADO");
+    }
+
+    public void rotar(int grados) {
+        System.out.println("Imaginame ROTADO " + grados + " GRADOS: soy UN CUADRADO");
+    }
+
+    public void otroMetodoDibujable() {
+        // Implementación del método adicional en la interfaz Dibujable para Cuadrado
+        System.out.println("Otro método en Cuadrado para Dibujable");
+    }
+
+    public void otroMetodoRotable() {
+        // Implementación del método adicional en la interfaz Rotable para Cuadrado
+        System.out.println("Otro método en Cuadrado para Rotable");
+    }
+}
+
+class Triangulo extends Figura implements Dibujable, Rotable {
+    private double base;
+    private double altura;
+
+    public Triangulo(double x, double y, double base, double altura) {
+        super(x, y);
+        this.base = base;
+        this.altura = altura;
+    }
+
+    public double calcularArea() {
+        return (base * altura) / 2;
+    }
+
+    public double calcularPerimetro() {
+        // Considera implementar el cálculo del perímetro para un triángulo según su tipo
+        return 0.0; // Reemplazar con la fórmula adecuada
+    }
+
+    public void dibujar() {
+        System.out.println("Imaginame DIBUJADO: soy UN TRIANGULO");
+    }
+
+    public void rotar(int grados) {
+        System.out.println("Imaginame ROTADO " + grados + " GRADOS: soy UN TRIANGULO");
+    }
+
+    public void otroMetodoDibujable() {
+        // Implementación del método adicional en la interfaz Dibujable para Triangulo
+        System.out.println("Otro método en Triangulo para Dibujable");
+    }
+
+    public void otroMetodoRotable() {
+        // Implementación del método adicional en la interfaz Rotable para Triangulo
+        System.out.println("Otro método en Triangulo para Rotable");
+    }
+}
+
+public class Figuras {
+    public static void main(String args[]) {
+        Circulo cir = new Circulo(200.0, 235.0, 23.5);
+        Cuadrado cua = new Cuadrado(200.0, 235.0, 23.5);
+        Triangulo tri = new Triangulo(200.0, 235.0, 23.5, 16.5);
+
+        System.out.println("Area del Circulo: " + cir.calcularArea());
+        System.out.println("Perimetro del Circulo: " + cir.calcularPerimetro());
+        cir.dibujar();
+        cir.rotar(20);
+        cir.otroMetodoDibujable();
+        cir.otroMetodoRotable();
+        System.out.println();
+
+        System.out.println("Area del Cuadrado: " + cua.calcularArea());
+        System.out.println("Perimetro del Cuadrado: " + cua.calcularPerimetro());
+        cua.dibujar();
+        cua.rotar(20);
+        cua.otroMetodoDibujable();
+        cua.otroMetodoRotable();
+        System.out.println();
+
+        System.out.println("Area del Triangulo: " + tri.calcularArea());
+        System.out.println("Perimetro del Triangulo: " + tri.calcularPerimetro());
+        tri.dibujar();
+        tri.rotar(20);
+        tri.otroMetodoDibujable();
+        tri.otroMetodoRotable();
+    }
+}
